@@ -1,0 +1,45 @@
+
+
+.container-login h3 {
+  text-align: center;
+  font-size: 50px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container-login {
+  background-image: linear-gradient(to top left,rgb(243, 40, 40), rgb(156, 243, 42), rgb(43, 245, 43));
+  font-size: 30px;
+  text-align: center;
+  font-family: "Times New Roman", Times, serif;
+  border: 2px solid black;
+  width: 360px;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 90px;
+}
+
+.container-login input {
+  width: 60%;
+  padding: 10px;
+  text-align: center;
+  font-size: 16px;
+  margin-bottom: 20px;
+  height: 20px;
+}
+
+.container-login button {
+  color: rgb(49, 52, 250);
+  margin-bottom: 30px;
+  font-size: 21px;
+  font-weight: bold;
+  height: 38px;
+  width: auto;
+  margin-top: 20px;
+}
+
+.container-login a {
+  color: rgb(17, 17, 16);
+  padding-right: 5px;
+  font-size: 15px;
+}

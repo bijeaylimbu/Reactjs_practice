@@ -1,0 +1,100 @@
+.logo {
+  background-color: rgb(255, 255, 255);
+  text-align: left;
+  width: 10%;
+  float: left;
+  height: 100px;
+  margin-right: 10px;
+}
+
+.img_logo {
+  width: 150px;
+  height: 100px;
+}
+
+.nav_div {
+  background-image: linear-gradient(to right, rgb(255, 0, 0), lightblue);
+  width: 100%;
+  border: 2px black solid;
+  float: left;
+}
+
+.menu-icon {
+  background-color: rgb(104, 95, 95);
+  text-align: center;
+  display: inline;
+}
+
+.nav-Links {
+  padding: 30px;
+  text-align: center;
+  font-size: 25px;
+  text-decoration: none;
+}
+.navbar {
+  background-color: rgb(
+    245,
+    43,
+    32
+  ); /* For browsers that do not support gradients */
+  background-image: linear-gradient(to right, rgb(255, 0, 0), lightblue);
+  padding: 20px;
+  font-family: Arial;
+  height: 55px;
+}
+
+.topnav input[type="text"] {
+  border: 1px solid #ccc;
+  padding-left: 20px;
+  float: right;
+}
+.nav-item {
+  float: left;
+  display: inline;
+  padding-left: 50px;
+}
+
+.search_input {
+  float: left;
+  padding-left: 250px;
+  padding-right: 0px;
+}
+.addcart {
+  float: right;
+  padding-left: 10pxs;
+}
+img {
+  height: 40px;
+  width: 40px;
+}
+
+button {
+  height: 20px;
+  width: 60px;
+}
+
+@media only screen and (max-width: 1200px) {
+  .logo {
+    background-color: rgb(255, 255, 255);
+    text-align: left;
+    width: 10%;
+    float: left;
+    height: 160px;
+    margin-right: 10px;
+  }
+
+  .img_logo {
+    width: 142px;
+    height: 160px;
+  }
+  .search_input {
+    float: left;
+    padding-left: 30px;
+    padding-right: 0px;
+    margin-left: 60px;
+    margin-top: 15px;
+  }
+  .nav-item {
+    margin-left: 60px;
+  }
+}

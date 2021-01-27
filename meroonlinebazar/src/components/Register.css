@@ -1,0 +1,82 @@
+@media only screen and (max-width: 500px) {
+  .container-register {
+    border: 3px solid black;
+    font-size: 30px;
+    font-family: "Times New Roman", Times, serif;
+    height: auto;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    background-color: rgb(209, 70, 221);
+  }
+}
+
+.container-register h2 {
+  text-align: center;
+  font-size: 40px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin-top: 0px;
+  margin-bottom: 20px;
+}
+
+.container-register {
+  border: 3px solid black;
+  font-size: 30px;
+  font-family: "Times New Roman", Times, serif;
+  height: auto;
+  width: 500px;
+  float: none;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  background-color: rgb(70, 221, 70);
+  background-image: linear-gradient(
+    to top left,
+    rgb(243, 40, 40),
+    rgb(156, 243, 42),
+    rgb(43, 245, 43)
+  );
+}
+
+.container-register p {
+  font-size: 20px;
+  width: 90%;
+}
+
+.container-register input[type="text"] {
+  width: 50%;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.container-register .password {
+  width: 50%;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.container-register .repeat_password {
+  width: 50%;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.container-register .Number {
+  width: 50%;
+  padding: 10px;
+}
+
+.container-register button .submit {
+  /* background-color: rgb(48, 48, 231); */
+  background-color: blue;
+  color: white;
+  padding: 20px;
+  margin-bottom: 40px;
+  border: none;
+  cursor: pointer;
+  width: 10px;
+  height: 20px;
+  text-align: center;
+  font-size: large;
+}

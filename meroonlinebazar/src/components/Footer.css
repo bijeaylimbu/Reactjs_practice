@@ -1,0 +1,22 @@
+.col h4 {
+  font-size: 20px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+.main-footer {
+  /* border: 2px solid black; */
+  height: 100%;
+  width: auto;
+  background-color: rgb(245, 43, 32);
+  background-image: linear-gradient(to right, rgb(255, 0, 0), lightblue);
+  text-align: center;
+  padding: 25px;
+}
+.main-footer p {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-size: px;
+}
+.social-container .social-media {
+  padding-left: 5px;
+}
