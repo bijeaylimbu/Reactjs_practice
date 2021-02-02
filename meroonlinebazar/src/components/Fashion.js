@@ -7,7 +7,7 @@ import "./Fashion.css";
 function Fashion() {
     return (
         <>
-        <Header/>
+     
         <div className="fashain-main">
         <div className="category-main">
         <div className = "category">

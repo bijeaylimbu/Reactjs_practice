@@ -11,9 +11,13 @@ import {useHistory} from 'react-router-dom';
 function Header(props) {
     const history = useHistory()
     // const { isLoggedIn } = this.state;
-   const user=getUser();  
+//    const user=getUser();
+
+
    const isLoggedIn = props.isLoggedIn;
     const token = getToken();
+    const user=getUser();
+   
 
     // handle click event of logout button
     const handleLogout = () => {
@@ -23,6 +27,12 @@ function Header(props) {
 
       
     }
+
+    useEffect(() => {
+        if(token!==null) {
+            history.push('/login_home')
+        }
+    }, [token])
 
    
   
@@ -46,8 +56,8 @@ function Header(props) {
           <>
 
 
-       
-   Welcome {token}!<br /><br /> 
+{/*        
+   Welcome {token}! <br /><br />  */}
    Welcome {user}!<br /><br /> 
    
  

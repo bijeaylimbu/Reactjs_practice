@@ -25,7 +25,7 @@ import ForgetPassword from "./components/ForgetPassword";
 import "./components/ForgetPassword";
 import VerificationCode from "./components/VerificationCode";
 import "./components/VerificationCode";
-import Add_car from "./components/Add_car";
+import Add_car from "./components/Add_car2";
 import Add_bikes from "./components/Add_bikes";
 import Add_computer from "./components/Add_computer";
 import Add_fashion from "./components/Add_fashion";

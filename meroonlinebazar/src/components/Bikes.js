@@ -7,7 +7,7 @@ import './Bikes.css'
 function Bikes() {
     return (
         <>
-        <Header/>
+      
         <div className="bike-main">
         <div className="category-main">
         <div className = "category">

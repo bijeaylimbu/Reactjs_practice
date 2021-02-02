@@ -1,21 +1,49 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Header from './Header1';
 import Footer from './Footer';
 import { Link } from 'react-router-dom';
 import './Home.css'
+import axios from 'axios';
+
+class Home extends Component {
+
+    constructor(){
+        super();
+        this.state={
+            data:[]
+        };
+    }
 
 
-function Home() {
+    fetchData(){
+        fetch('http://127.0.0.1:8000/addpost/')
+        .then(response=>response.json())
+        .then((data)=>{
+            this.setState({
+                data:data
+            });
+
+            console.log(data)
+        });
+    }
+
+    componentDidMount(){
+        this.fetchData();
+    }
+
+    render(){
 
 
-    
+      
+
+       
 
     return (
         <>
             <div>
                 <Header/>
             </div>
-        
+    
         
             <div className="page-main">
             <div className="home_main">
@@ -88,6 +116,7 @@ function Home() {
             </div>
         </>
     )
+}
 }
 
 export default Home;

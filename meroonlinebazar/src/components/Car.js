@@ -1,13 +1,63 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import './Car.css'
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import {getUser} from './Common';
 
 function Car() {
+    const user=getUser();
+    let history=useHistory();
+
+
+
+    const [data,setData]=useState([]);
+  const getData=()=>{
+    fetch('http://127.0.0.1:8000/addpost/'
+    ,{
+      headers : { 
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+       }
+    }
+    )
+      .then(function(response){
+        console.log(response)
+        return response.json();
+      })
+      .then(function(myJson) {
+        console.log(myJson);
+        setData(myJson)
+      });
+
+      useEffect(()=>{
+        getData()
+      },[])
+
+   
+   
+}
+
+
+
+const button_add = () => {
+    if ((user===undefined) || (user===null) ){
+        console.log(user)
+        alert('please log in or register')
+        history.push('./login')
+
+       
+   }else  {
+
+history.push('/Add_car')
+
+   }
+
+
+}
     return (
         <>
-        <Header/>
+       
         <div className ="Car-main">
         <div className="category-main">
         <div className = "category">
@@ -52,10 +102,9 @@ function Car() {
                 
                 <a>Cars</a>
            
-                <button><Link to="/Add_car" className= 'addcar_post'>
-                                              Add Post
-                                              </Link></button>
-                
+                <button onClick={button_add} className= 'addcar_post'>  Add Post</button>
+                                            
+                                            
                </div>
 
 
@@ -115,8 +164,16 @@ function Car() {
 
             </div>
             </div>
+
         
 </div>
+ <div className="App">
+     {
+       data && data.length>0 && data.map((item)=><p>{item.username}</p>)
+       
+     }
+     console.log(item.username)
+    </div>
 
 </div>
         <Footer/>

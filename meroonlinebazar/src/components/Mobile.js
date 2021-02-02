@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 function Mobile() {
     return (
         <>
-        <Header/>
+        
         <div className="mobile-main">
         <div className="category-main">
         <div className = "category">

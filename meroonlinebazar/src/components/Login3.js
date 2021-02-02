@@ -23,21 +23,41 @@ function Login(props) {
     setError(null);
     setLoading(true);
     axios.post(' http://127.0.0.1:8000/auth/',
+ 
      { username: username.value, password: password.value })
+    
      .then(response => {
       setLoading(false);
-    setUserSession(response.data.token,response.data.username);
+    setUserSession(response.data.token,username.value);
+    // localStorage.setItem('user',response.data.user)
+     
+    // setUserSession(response.data.username,response.data.user);
+
+    
+
+    // sessionStorage.setItem('UserName',response.data.username);
+      //  localStorage.setItem( 'user',username)
+      //  console.log(Use)
+  
     
     
       // localStorage.setItem('session',JSON.stringify(token));
       props.history.push('/login_home');
     }).catch(error => {
       setLoading(false);
-      if (error.response.status === 401) setError(error.response.data.message);
+       if (error.response.status === 401) setError(error.response.data.message);
        else setError("username and password doesnt");
       
+       if(error.toJSON().message === 'Network Error'){
+        alert('no internet connection');
+        dispatch({type: RELOAD});
+    }
 
     });
+
+
+
+    
   }
 
   return (

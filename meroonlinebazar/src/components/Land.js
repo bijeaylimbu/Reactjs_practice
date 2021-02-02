@@ -8,7 +8,7 @@ import "./Land.css";
 function Land() {
     return (
         <>
-        <Header/>
+    
         <div className="land-main">
         <div className="category-main">
         <div className = "category">

@@ -7,7 +7,7 @@ import "./Computer.css"
 function Computer() {
     return (
         <>
-        <Header/>
+      
         <div className="computer-main">
         <div className="category-main">
         <div className = "category">
