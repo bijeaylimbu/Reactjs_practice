@@ -1,18 +1,17 @@
 import React,{ useState,useEffect } from 'react'
-import './Add_car.css'
-import Header from './Header';
-import axios from 'axios';
-import {useCookies} from 'react-cookie';
+
+import './Add_car.css';
 import {useHistory} from 'react-router-dom';
-import APIService from '../APIService'
+
 import { getToken ,getUser} from './Common';
 
 function Add_car(props) {
   const history = useHistory();
 
- 
+  
  const user=getUser();
  const [username, setUsername] = useState('')
+ const [name, setName] = useState('')
   const [image, setImage] = useState('')
   const [description, setDescription] = useState('')
   const [used_for, setUsedfor] = useState('')
@@ -21,13 +20,13 @@ function Add_car(props) {
   const [price, setPrice] = useState('')
   const [zone, setzone] = useState('')
 
-  const [lot_no, setLotNO] = useState('')
+  const [lot, setLot] = useState('')
   const [color, setColor] = useState('')
 
   const [engine, setEngine] = useState('')
   const [milage, setMilage] = useState('')
 
-  const [km, setKm] = useState('')
+  const [kilometers, setKm] = useState('')
   const [home_delivery, setHomeDelivery] = useState('')
   const [delivery_area, setDeliveryArea] = useState('')
 
@@ -71,15 +70,16 @@ function Add_car(props) {
     uploadData.append('username', user);
     uploadData.append('image', image);
     uploadData.append('description', description);
+    uploadData.append('name', name);
 
     uploadData.append('used_for', used_for);
     uploadData.append('price', price);
     uploadData.append('zone', zone);
-    uploadData.append('lot_no', lot_no);
+    uploadData.append('lot', lot);
     uploadData.append('color', color);
     uploadData.append('engine', engine);
     uploadData.append('milage', milage);
-    uploadData.append('km', km);
+    uploadData.append('kilometers', kilometers);
     uploadData.append('used_for', used_for);
     uploadData.append('price', price);
     uploadData.append('home_delivery', home_delivery);
@@ -91,9 +91,9 @@ function Add_car(props) {
       body: uploadData,
       
     })
-    .then( res => console.log(res))
-    .catch(error => console.log(error))
-    history.push('/login_home');
+    // .then( res => console.log(res))
+   
+    //  history.push('/login_home');
     // APIService.InsertAdd({image,description,used_for,price,zone,lot_no,color,engine,milage,km,home_delivery,delivery_area,warrenty,warrenty_period}, token)
     // .then(resp => props.insertedInformation(resp))
 }
@@ -126,75 +126,96 @@ function Add_car(props) {
            {/* <Header/> */}
            
            
-        <div>
+        <div classname='add_car_main'>
         <h1> Add Posts</h1>
+        <input type="text" className='username_input' id='username' value = {user} onChange={(evt) => setUsername(evt.target.value)} disabled/><br/>
         
-        
-        <input type='file' onChange={(evt) => setImage(evt.target.files[0])}/>
+        <label for="image" className='add_post_label'> Upload Image :</label>
+        <input type='file' onChange={(evt) => setImage(evt.target.files[0])} className='add_post_input'/><br/>
         <br/>
 
-                         
-        <input type="text" id='username' value = {user} onChange={(evt) => setUsername(evt.target.value)} /><br/>
+        <br/>
+                <label for='name'  className='add_post_label' > Product name :</label>
                 
-                    
-                <label for="description"> Description :</label>
+                <input type="text" id='name' className='add_post_input' value = {name} onChange={(evt) => setName(evt.target.value)} /><br/>
+                     <br/>  
+        {/* <input type="text" id='username' value = {user} onChange={(evt) => setUsername(evt.target.value)} disabled/><br/> */}
                 
-                <input type="text" id='description' value = {description} onChange={(evt) => setDescription(evt.target.value)} />
+        <br/>
+                <label for="description" className='add_post_label' > Description :</label>
+                
+                <input type="text" id='description' className='add_post_input' value = {description} onChange={(evt) => setDescription(evt.target.value)} /><br/>
                      <br/>
-                <label for="condition">User For(year/month) </label>
-                <input type="text" id='used_for' value = {used_for} onChange={(evt) => setUsedfor(evt.target.value)}  /><br/>
-                
+                <label for="condition" className='add_post_label' >User For </label>
+               
+                <input type="text" id='used_for' className='add_post_input' value = {used_for} onChange={(evt) => setUsedfor(evt.target.value)}  /><br/>
+                <br/>
 
-                <label for="price"> Price :</label>
-                <input type="number" id='price' value = {used_for} onChange={(evt) => setPrice(evt.target.value)} /><br/>
-                
-                <label for="zone">Zone: </label>
-                <input type="text"  id='zone' value = {zone} onChange={(evt) => setzone(evt.target.value)} /><br/>
-                <label for="lot_no">Lot No: </label>
-                <input type="number"  id='lot_no' value = {lot_no} onChange={(evt) => setLotNO(evt.target.value)}/><br/>
-                <label for="colour">Colour: </label>
-                <input type="text"  id='color'  value = {color} setColor={(evt) => setColor(evt.target.value)}/><br/>
-                <label for="engine">Engine(CC): </label>
-                <input type="number" id='engine' value = {engine} onChange={(evt) => setEngine(evt.target.value)} /><br/>
-                <label for="mileage">Mileage </label>
-                <input type="number" id='milage' value = {milage} onChange={(evt) => setMilage(evt.target.value)}/><br/>
-                <label for="kilometer">Kilometers: </label>
-                <input type="text"  id='km' value = {km} onChange={(evt) => setKm(evt.target.value)} /><br/>
-                <label for="home_delivery">Home_delivery: </label>
+                <label for="price" className='add_post_label'> Price :</label>
+                <input type="text" id='price' className='add_post_input' value = {price} onChange={(evt) => setPrice(evt.target.value)} /><br/>
+                <br/>
+                <label for="zone" className='add_post_label' >Zone: </label>
+                <input type="text"  id='zone' className='add_post_input' value = {zone} onChange={(evt) => setzone(evt.target.value)} /><br/>
+                <br/>
+                <label for="lot_no" className='add_post_label'>Lot No: </label>
+                <input type="text"  id='lot' className='add_post_input' value = {lot} onChange={(evt) => setLot(evt.target.value)}/><br/>
+                <br/>
+                <label for="colour" className='add_post_label'>Colour: </label>
+                <input type="text"  id='color' className='add_post_input' value = {color} onChange={(evt) => setColor(evt.target.value)}/><br/>
+                <br/>
+                <label for="engine" className='add_post_label'>Engine(CC): </label>
+                <input type="text" id='engine' className='add_post_input' value = {engine} onChange={(evt) => setEngine(evt.target.value)} /><br/>
+                <br/>
+                <label for="mileage" className='add_post_label'>Mileage </label>
+                <input type="text" id='milage' className='add_post_input' value = {milage} onChange={(evt) => setMilage(evt.target.value)}/><br/>
+                <br/>
+                <label for="km" className='add_post_label'>Kilometers: </label>
+                <input type="text"  id='kilometers' className='add_post_input' value = {kilometers} onChange={(evt) => setKm(evt.target.value)} /><br/>
+                <br/>
+                <label for="home_delivery" className='add_post_label'>Home_delivery: </label>
+                <br/>
                 <select 
      value = {home_delivery} onChange={(evt) => setHomeDelivery(evt.target.value)}
        name="home_delivery"
-      >
+      
+          >
+              <option value="">-----</option>
        <option value="YES">YES</option>
-        <option value="No">No</option>
+        <option value="NO" selected>NO</option>
         
       </select>
       <br/>
                
                
                 {/* <input type="text" id='home_delivery' value = {home_delivery} onChange={(evt) => setHomeDelivery(evt.target.value)} /><br/> */}
-                <label for="delivery_area">Delivery Area: </label>
-                <input type="text" id='delivery_area' value = {delivery_area} onChange={(evt) => setDeliveryArea(evt.target.value)} /><br/>
-                <label for="warrenty">Warrenty : </label>
+                <label for="delivery_area" className='add_post_label'>Delivery Area: </label>
+                <input type="text" id='delivery_area' className='add_post_input' value = {delivery_area} onChange={(evt) => setDeliveryArea(evt.target.value)} /><br/>
+                <br/>
+                <label for="warrenty"className='add_post_label' >Warrenty : </label>
 
                 <select 
         value={warrenty} 
         onChange={(evt) => setWarrenty(evt.target.value)} 
        
       >
+        
+            
+        <option value="">-----</option>    
        <option value="YES">YES</option>
-        <option value="No">No</option>
+        <option value="NO"  >NO</option>
         
       </select>
       <br/>
       
                
-                
-                <label for="warrenty_period">Warrenty Period: </label>
-                <input type="number" id='warrenty_period' value = {warrenty_period} onChange={(evt) => setWarrentyPeriod(evt.target.value)} /><br/>
+      <br/>
+                <label for="warrenty_period" className='add_post_label' >Warrenty Period: </label>
+                <input type="text" id='warrenty_period' className='add_post_input' value = {warrenty_period} onChange={(evt) => setWarrentyPeriod(evt.target.value)} /><br/>
              
+             <br/>
+             <br/>
                 
-                <button onClick={() => insertAdd()} >Add Post</button>
+                <button onClick={() => insertAdd()} className='post_botton'>Post</button>
 
         
         </div>

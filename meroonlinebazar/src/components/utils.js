@@ -1,34 +1,17 @@
-export const VALUE = 'value';
-export const ERROR = 'error';
-export const REQUIRED_FIELD_ERROR = 'This is required field';
+const token = "";
 
-function is_bool(value) {
-  return typeof value === 'boolean';
+export const login = () => {
+    sessionStorage.setItem(token, 'TestLogin');
 }
 
-/**
- * Determines a value if it's an object
- *
- * @param {object} value
- */
-export function is_object(value) {
-  return typeof value === 'object' && value !== null;
+export const logout = () => {
+    sessionStorage.removeItem(token);
 }
 
-/**
- *
- * @param {string} value
- * @param {boolean} isRequired
- */
-export function is_required(value, isRequired) {
-  if (!value && isRequired) return REQUIRED_FIELD_ERROR;
-  return '';
-}
+export const isLogin = () => {
+    if (sessionStorage.getItem(token)) {
+        return true;
+    }
 
-export function get_prop_values(stateSchema, prop) {
-  return Object.keys(stateSchema).reduce((field, key) => {
-    field[key] = is_bool(prop) ? prop : stateSchema[key][prop];
-
-    return field;
-  }, {});
+    return false;
 }

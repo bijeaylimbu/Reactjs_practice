@@ -5,6 +5,19 @@ import axios from 'axios';
 import { setUserSession } from './Common';
 import {useCookies} from 'react-cookie';
 import {useHistory} from 'react-router-dom';
+import validate from './RegisterFormValidationRule';
+
+import background from '../Image/bach.jpg'
+
+// const Form = () => {
+//   const {
+//     values,
+//     errors,
+//     handleChange,
+//     handleSubmit,
+//   } = useForm(login, validate)
+
+
 
 function Register(props) {
   const [loading, setLoading] = useState(false);
@@ -14,72 +27,151 @@ function Register(props) {
   const password2 = useFormInput('');
   const first_name = useFormInput('');
   const last_name = useFormInput('');
+  const phone = useFormInput('');
+  const image = useFormInput('');
+
+
  
-  const [error, setError] = useState(null);
+  const [error, setError] = useState(['']);
+  const [error_username, setError_username] = useState(['']);
+  const [error_username1, setError_username1] = useState(['']);
+  const [error_password,setError_password] = useState(['']);
+  const [error_password2,setError_password2] = useState(['']);
+  const [error_email,setError_email] = useState(['']);
+  const [error_first_name,setError_first_name] = useState(['']);
+  const [error_last_name,setError_last_name] = useState(['']);
+  
+  
 
   const history = useHistory()
 
 
-  //   useEffect(() => {
-  //       if(token) {
-  //           history.push('/')
-  //       }
-  //   }, [token])
-
-  // handle button click of login form
+  
   const handleRegister = () => {
-    setError(null);
+   
     setLoading(true);
-    axios.post(' http://127.0.0.1:8000/api/register/',
-     { username: username.value, password: password.value,email:email.value,password2:password2.value ,first_name:first_name.value,last_name:last_name.value})
-     .then(response => {
-      setLoading(false);
+    axios.all([ 
+    axios.post('http://127.0.0.1:8000/api/register/',
+    { username: username.value, password: password.value,email:email.value,password2:password2.value ,first_name:first_name.value,last_name:last_name.value}),
     
+    axios.post('http://127.0.0.1:8000/api/profile/',
+    {phone:phone.value,username: username.value, password: password.value,email:email.value,password2:password2.value ,first_name:first_name.value,last_name:last_name.value}),
     
-      // localStorage.setItem('session',JSON.stringify(token));
-      // history.push('/');
-    }).catch(error => {
-      setLoading(false);
-      if (error.response.status === 401) setError(error.response.data.message);
-      else setError(error.message);
+  
+  
+  ]).then(response => {
+    setLoading(false);
+  
+
+
+     history.push('/');
+  })
+   
+     .catch(error => {
+     
+   
+     
+      if (error.response.status === 401)
+      { 
+       
+        setError(error.response.data.email)
+        setError_username(error.response.data.username)
+        setError_username1(error.response.data.username)
+        setError_password(error.response.data.password)
+        setError_password2(error.response.data.password2)
+        setError_email(error.response.data.email)
+        setError_first_name(error.response.data.first_name)
+        setError_last_name(error.response.data.last_name)
+      
+
+       
+        
+         
+   
+      }
+     else setError(error.response.data.email)
+     setError_username(error.response.data.username)
+     setError_username1(error.response.data.username)
+     setError_password(error.response.data.password)
+     setError_email(error.response.data.email)
+     setError_first_name(error.response.data.first_name)
+     setError_last_name(error.response.data.last_name)
+     setError_password2(error.response.data.password2)
+    
+       
+      
+     
     });
   }
 
   return (
-    <div class="container-login"> 
+    <div class="container_reg"> 
+   
+  <div className='background_image' style={{ backgroundImage: `url(${background})`,
+   
+  
 
-<h1>Please Register </h1>
+   backgroundSize: 'cover',
+   backgroundRepeat: 'no-repeat',
+ 
+  
+ 
+    
+    }}>  
+    <div className='container_form'>
+<h2>Please Register</h2> 
+<br/>
 
 First Name:
  <br/> 
-    <input type = "text" placeholder="" className = "username" {...first_name} />
+    <input type = "text" placeholder="First Name" className="reg" {...first_name} />
     <br/>
+    {error_first_name && <><small style={{ color: 'red' }}>{error_first_name}</small><br /></>}
     Last Name:
  <br/> 
-    <input type = "text" placeholder="" className = "username" {...last_name} />
+    <input type = "text" placeholder="Last Name" className = "reg" {...last_name} />
+    
     <br/>
+    {error_last_name && <><small style={{ color: 'red' }}>{error_last_name}</small><br /></>}
  username
  <br/> 
-    <input type = "text" placeholder="username" className = "username" {...username} />
+    <input type = "text" placeholder="username" className = "reg" {...username} />
     <br/>
-
+    {error_username && <><small style={{ color: 'red' }}>{error_username}</small><br /></>}
 
     email <br/> 
-    <input type = "text" placeholder="email" className = "email" {...email} />
+    <input type = "text" placeholder="email" className = "reg" {...email} />
     <br/>
+    {error_email && <><small style={{ color: 'red' }}>{error_email}</small><br /></>}
+    Phone <br/> 
+    <input type = "text" placeholder="Phone" className = "reg" {...phone} />
+    <br/>
+    
+    
+    
+   
+    
     Password <br/>
-     <input type = "password" placeholder="Enter password" className = "password" {...password}/>
-    <br/>
-
-    Re-Password <br/>
-     <input type = "password" placeholder="Enter password" className = "password2" {...password2}/>
-    <br/>
-    {error && <><small style={{ color: 'red' }}>{error}</small><br /></>}<br />
-    <button  onClick={handleRegister} >Register</button>
-    
-
-    
+     <input type ="password" placeholder="Enter password" className = "reg"  {...password}/>
+ <br/>
+ {error_password && <><small style={{ color: 'red' }}>{error_password2}</small><br /></>}<br />
  
+    Re-Password <br/>
+     <input type ="password" placeholder="Enter password" className = "reg" {...password2}/>
+   <br/>
+    {/* { ( // Conditionally render our errors
+        errors.map((error) => (
+          <Alert type={error.type} message={error.message} />
+        )
+      ))} */}
+    {error_password && <><small style={{ color: 'red' }}>{error_password}</small><br /></>}<br />
+    {/* {error.map(error => <div>{error.data}</div>)} */}
+    
+    <button  onClick={handleRegister} className='reg_button' >Register</button>
+    
+    </div>
+    
+    </div>
 
 
 

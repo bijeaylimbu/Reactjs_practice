@@ -1,17 +1,26 @@
 import React, { useState,useEffect } from 'react';
 import axios from 'axios';
-import { setUserSession } from './Common';
+import { getUser, setUserSession } from './Common';
 import {useCookies} from 'react-cookie';
 import {useHistory} from 'react-router-dom';
+import background from '../Image/unnamed.jpg'
+import './Login.css';
 function Login(props) {
   const [loading, setLoading] = useState(false);
   const username = useFormInput('');
   const password = useFormInput('');
   const [error, setError] = useState(null);
+const user=getUser();
+  let history=useHistory();
+  function Register(){
+history.push('./register')
 
- 
-  
+  }
 
+
+  if (user) {
+    history.push('./login_home')
+  }
   //   useEffect(() => {
   //       if(token) {
   //           history.push('/')
@@ -42,11 +51,13 @@ function Login(props) {
     
     
       // localStorage.setItem('session',JSON.stringify(token));
+     
       props.history.push('/login_home');
+
     }).catch(error => {
       setLoading(false);
        if (error.response.status === 401) setError(error.response.data.message);
-       else setError("username and password doesnt");
+       else setError("username and password doesn't");
       
        if(error.toJSON().message === 'Network Error'){
         alert('no internet connection');
@@ -61,31 +72,58 @@ function Login(props) {
   }
 
   return (
-    <div class="container-login"> 
+    <div className='login_main'>
 
-<h1>Please Login </h1>
+  <div className='background_image' style={{ backgroundImage: `url(${background})`,
+   
+  
+
+   backgroundSize: 'cover',
+   backgroundRepeat: 'no-repeat',
  
-    Username <br/> 
+  
+ 
+    
+    }}>   
+  
+
+    
+    <div class="login_page"> 
+
+<label>Login</label>
+<br/>
+ 
+<label>Username or Email</label>
+    <br/>
     <input type = "text" placeholder="username" className = "username" {...username} />
     
     <br/>
-    Password <br/>
+  <label> Password </label>
+     <br/>
      <input type = "password" placeholder="Enter password" className = "password" {...password}/>
     <br/>
 
-    { error &&
-  <h3 className="error"> { error } </h3> }
+    {/* { error &&
+  <h5> { error } </h5> }<br/> */}
   
     {/* {error && <><small style={{ color: 'red' }}>{error}</small><br /></>}<br /> */}
-    <button  onClick={handleLogin} >Login</button>
+    <br/>
+    <br/>
+    <button  onClick={handleLogin}  className='login_button'>Login</button>
+    <button  onClick={Register}  className='login_button'>Register</button>
+
+    { error &&
+  <h5> { error } </h5> }<br/>
     
 
     
- 
-
+ </div>
 
 
   </div>
+  
+
+ </div>
   );
 }
 

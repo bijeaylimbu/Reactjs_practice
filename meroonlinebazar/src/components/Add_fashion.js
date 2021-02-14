@@ -1,23 +1,87 @@
-import React from 'react'
+import React,{ useState,useEffect } from 'react'
+
+import './Add_car.css';
+import {useHistory} from 'react-router-dom';
+
+import { getToken ,getUser} from './Common';
 
 function Add_fashion() {
+    const history = useHistory();
+
+ 
+ const user=getUser();
+ const [username, setUsername] = useState('')
+  const [image, setImage] = useState('')
+  const [description, setDescription] = useState('')
+  const [used_for, setUsedfor] = useState('')
+  
+
+  const [price, setPrice] = useState('')
+  const [wearfor, setWearfor] = useState('')
+
+  const [type, setType] = useState('')
+
+  const [color, setColor] = useState('')
+
+  const [size, setSize] = useState('')
+
+  
+  const [home_delivery, setHomeDelivery] = useState('')
+  const [delivery_area, setDeliveryArea] = useState('')
+  const [warrenty, setWarrenty] = useState('')
+  const [warrenty_period, setWarrentyPeriod] = useState('')
+
+
+  const token = getToken();
+
+
+  const insertAdd = () => {
+    
+    const uploadData = new FormData();
+    uploadData.append('username', user);
+    uploadData.append('image', image);
+    uploadData.append('description', description);
+
+    uploadData.append('used_for', used_for);
+    uploadData.append('price', price);
+    uploadData.append('wear_for', wearfor);
+    uploadData.append('type_clothes', type);
+    uploadData.append('size', size);
+    uploadData.append('color', color);
+    uploadData.append('home_delivery', home_delivery);
+    uploadData.append('delivery_area', delivery_area);
+    uploadData.append('warrenty', warrenty);
+    uploadData.append('warrenty_period', warrenty_period);
+    fetch('http://127.0.0.1:8000/addpost_fashion/', {
+      method: 'POST',
+      body: uploadData,
+      
+    })
+    .then( res => console.log(res))
+    .catch(error => console.log(error))
+    history.push('/login_home');
+    
+}
     return (
         <>
         <div>
         <h1> Add Posts</h1>
-        <form>
+        <input type="text" className='username_input' id='username' value = {user} onChange={(evt) => setUsername(evt.target.value)} disabled/><br/>
         
-        <div className= "ad_images">
-                         images
-                    </div>
-                <label for="description"> Description :</label>                
-                <input type="text" id="description" className="description"/>                  <br/>
-                <label for="price"> Price :</label>                
-                <input type="number" id="price" className="price"/><br/> 
-                <label for="condition">User For(year/month): </label>
-                <input type="text" id="condition" name="condition"/><br/>
-                <label for="wear_for">Wear For: </label>
-                <select name="for" id="for">
+                <label for="image" className='add_post_label'> Upload Image :</label><br/>
+        <input type='file' onChange={(evt) => setImage(evt.target.files[0])} className='add_post_input'/><br/>
+        <br/>
+        <input type="text" id='description' className='add_post_input' value = {description} onChange={(evt) => setDescription(evt.target.value)} /><br/>
+                     <br/>
+                     <label for="condition" className='add_post_label' >User For </label><br/>
+                <input type="text" id='used_for' className='add_post_input' value = {used_for} onChange={(evt) => setUsedfor(evt.target.value)}  /><br/>
+                <br/>
+               <label for="price" className='add_post_label'> Price :</label><br/>
+                <input type="text" id='price' className='add_post_input' value = {price} onChange={(evt) => setPrice(evt.target.value)} /><br/>
+                <br/>
+                <label for="wear_for" className='add_post_label'>Wear For: </label><br/>
+                <select  id="wear_for" className='add_post_input' value = {wearfor} onChange={(evt) => setWearfor(evt.target.value)}>
+                <option value="">---</option>
                         <option value="male">Male </option>
                         <option value="female">Female</option>
                         <option value="children">Children </option>
@@ -25,8 +89,9 @@ function Add_fashion() {
                         <option value="old_ages">Old People </option>
                         
                         </select><br/>
-                <label for="type">Type: </label>
-                <select name="type_clothes" id="type_clothes">
+                <label for="type" className='add_post_label'>Type: </label><br/>
+                <select className='add_post_input' value = {type} onChange={(evt) => setType(evt.target.value)}id="type_clothes">
+                <option value="">---</option>
                         <option value="T-Shirt ">T-Shirt </option>
                         <option value="Polo<">Polo</option>
                         <option value="Shirt">Shirt </option>
@@ -44,8 +109,9 @@ function Add_fashion() {
                         <option value="Undergarments">Undergarments </option>
                         <option value="others">Others</option>
                         </select><br/>
-                <label for="size">Size: </label>
-                <select name="size" id="size">
+                <label for="size" className='add_post_label'>Size: </label><br/>
+                <select  id="size" className='add_post_input' value = {size} onChange={(evt) => setSize(evt.target.value)}>
+                <option value="">---</option>
                         <option value="xs">XS </option>
                         <option value="s">S</option>
                         <option value="m">M </option>
@@ -53,21 +119,53 @@ function Add_fashion() {
                         <option value="xl">XL </option>
                         
                         </select><br/>
-                <label for="color">Color: </label>
-                <input type="text" id="color" name="color"/><br/>
-                <label for="home_delivery">Home_delivery: </label>
-                <input type="text" id="home_delivery" name="home_delivery"/><br/>
-                <label for="delivery_area">Delivery Area: </label>
-                <input type="text" id="delivery_area" name="delivery_area"/><br/>
-                <label for="warrenty">Warrenty : </label>
-                <input type="text" id="warrenty" name="warrenty"/><br/>
-                
-                <label for="warrenty_period">Warrenty Period: </label>
-                <input type="number" id="warrenty_area" name="warrenty_area"/><br/>
-                
-                <input type="submit" value="Submit"/>
+                <label for="color" className='add_post_label'>Color: </label><br/>
+                <input type="text" id="color" className='add_post_input' value = {color} onChange={(evt) => setColor(evt.target.value)}/><br/>
+                <label for="home_delivery" className='add_post_label'>Home_delivery: </label>
+                <br/>
+                <select 
+            value = {home_delivery} onChange={(evt) => setHomeDelivery(evt.target.value)}
+            className='add_post_label'
+         >
+                 <option value="">---</option>
+       <option value="YES">YES</option>
+        <option value="No">No</option>
+        
+      </select>
+      <br/>
+               
+               
+      <br/>
+      
+               <br/>
+               <br/>
+      <label for="delivery_area" className='add_post_label'>Delivery Area: </label><br/>
+    
+                <input type="text" id='delivery_area' className='add_post_input' value = {delivery_area} onChange={(evt) => setDeliveryArea(evt.target.value)} /><br/>
+                <br/>
+                <label for="warrenty"className='add_post_label' >Warrenty : </label><br/>
 
-            </form>  
+                <select 
+        value={warrenty} 
+        onChange={(evt) => setWarrenty(evt.target.value)} 
+       
+      >
+              <option value="">---</option>
+       <option value="YES">YES</option>
+        <option value="No">No</option>
+        
+      </select>
+      <br/>
+      
+               
+      <br/>
+                <label for="warrenty_period" className='add_post_label' >Warrenty Period: </label><br/>
+                <input type="number" id='warrenty_period' className='add_post_input' value = {warrenty_period} onChange={(evt) => setWarrentyPeriod(evt.target.value)} /><br/>
+             
+                <br/>
+                <br/>
+                <button onClick={() => insertAdd()} className='post_botton'>Post</button>
+
         </div>
         </>
     )

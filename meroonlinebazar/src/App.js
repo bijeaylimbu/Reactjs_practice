@@ -6,10 +6,19 @@ import "./components/Home";
 import "./components/AddPost";
 import Home from './components/Home';
 import Home1 from './components/Home1';
-
+import ViewPost from './components/ViewPost';
+import ViewPost_computer from './components/ViewPost_computer';
+import ViewPost_fashion from './components/ViewPost_fashion';
+import ViewPost_phones from './components/ViewPost_phones';
 import "./components/Login";
 import Login from './components/Login3';
-import Car from './components/Car';
+import Car from './components/Car2';
+import Product from './components/Product1';
+import Product_computer from './components/Product_computer';
+import Product_fashion from './components/Product_fashion';
+import Product_land from './components/Product_land';
+import Product_phones from './components/Product_phones';
+import Product_bikes from './components/Product_bikes';
 import Bikes from './components/Bikes';
 import Mobile from './components/Mobile';
 import Computer from './components/Computer';
@@ -17,7 +26,8 @@ import Fashion from './components/Fashion';
 import "./components/Register";
 import Register from './components/Register1';
 import Cart from './components/Cart';
-import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+// import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import { BrowserRouter, Switch,Route } from 'react-router-dom';
 import AddPost from "./components/AddPost";
 import "./components/Header"
 import Land from "./components/Land";
@@ -31,6 +41,16 @@ import Add_computer from "./components/Add_computer";
 import Add_fashion from "./components/Add_fashion";
 import Add_mobile from "./components/Add_mobile";
 import Add_landhouse from "./components/Add_landhouse";
+
+import Dashboard from "./components/Dashboard";
+import Dashboard_fashion from "./components/Dashboard_fashion";
+import Dashboard_bikes from "./components/Dashboard_bikes";
+import Dashboard_car from "./components/Dashboard_car";
+import Dashboard_computer from "./components/Dashboard_computer";
+import Dashboard_land from "./components/Dashboard_land";
+import Dashboard_phones from "./components/Dashboard_phones";
+import PrivateRoute from './components/PrivateRoute';
+import PublicRoute from './components/PublicRoute';
 import axios from 'axios';
 import { getToken, removeUserSession, setUserSession } from './components/Common';
 import Header from "./components/Header";
@@ -64,17 +84,17 @@ function  App(){
   // const userLogin = (tok) => {
   //   setToken(tok);
   // }
-
-
+  
 
 
 
   return (
     <>
    
+ 
+     
 
-
-    <Router>
+    <BrowserRouter>
         
       <Switch>
       <Route path='/'   exact component = {Home} />  
@@ -98,11 +118,34 @@ function  App(){
         <Route path='/Add_fashion' component={Add_fashion} />
         <Route path='/Add_landhouse' component={Add_landhouse} />
         <Route path='/Add_mobile' component={Add_mobile} />
+        <Route path='/ViewPost' component={ViewPost} />
+        <Route path='/ViewPost_computer' component={ViewPost_computer} />
+        <Route path='/dashboard' component={Dashboard} />
+        <Route path='/dashboard_fashion' component={Dashboard_fashion} />
+        <Route path='/dashboard_phones' component={Dashboard_phones} />
+        <Route path='/dashboard_car' component={Dashboard_car} />
+        <Route path='/dashboard_land' component={Dashboard_land} />
+        <Route path='/dashboard_bikes' component={Dashboard_bikes} />  
+        <Route path='/dashboard_computer' component={Dashboard_computer} />     
+        <Route path='/products/:id' component={Product} />
+        <Route path='/products_computer/:id' component={Product_computer} />
+        <Route path='/products_fashion/:id' component={Product_fashion} />
+        <Route path='/products_land/:id' component={Product_land} />
+
+        <Route path='/products_phones/:id' component={Product_phones} />
+
+        <Route path='/products_bikes/:id' component={Product_bikes} />
+        <PublicRoute restricted={false} component={Home} path="/" exact />
+          <PublicRoute restricted={true} component={Login} path="/login" exact />
+          <PublicRoute restricted={true} component={Home1} path="/login_home" exact />
+          <PrivateRoute component={Dashboard} path="/dashboard" exact />
+          <PrivateRoute component={Home1} path="/login_home" exact />
 
       </Switch>
 
-      </Router>
-   
+      </BrowserRouter>
+    
+      
     
     </>
   );

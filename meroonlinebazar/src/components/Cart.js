@@ -1,7 +1,8 @@
-import React from "react";
+import React, { Component } from "react";
 import "./Cart.css";
 
-function Cart(){
+class Cart extends Component{
+     render(){
      return(
           <> 
 
@@ -101,5 +102,6 @@ function Cart(){
 </div>  
         </>
     )
+}
 }
 export default Cart

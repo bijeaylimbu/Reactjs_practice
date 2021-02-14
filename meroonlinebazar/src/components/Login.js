@@ -106,7 +106,7 @@ function Login(props) {
     Password <br/>
      <input type = "password" placeholder="Enter password" className = "password" id="password" value = {password} onChange = {e => setPassword(e.target.value)}/>
     <br/>
-    <button onClick = {loginBtn} >Login</button>
+    <button className ="login-button" onClick = {loginBtn} >Login</button>
     
 
     

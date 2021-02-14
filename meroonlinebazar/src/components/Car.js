@@ -1,60 +1,91 @@
-import React,{useState,useEffect} from 'react';
+import React,{useState,useEffect, Component} from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import './Car.css'
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory,useParams } from 'react-router-dom';
 import {getUser} from './Common';
+import { useAxiosGet } from './HttpRequest';
+import { render } from 'react-dom';
 
-function Car() {
+function Car()  {
+ 
+
+  
+    // const { id } = useParams()
     const user=getUser();
     let history=useHistory();
+    // const url = 'http://127.0.0.1:8000/addpost/${id}'
+
+    // let product = useAxiosGet(url)
+    // let content = null
+
+
+   
+
+    // if(product.loading){
+    //     // content = <Loader></Loader>
+    // }
+
+    // if(product.data){
+    //     console.log(product.data)
+    //     content = 
+    //     <div>
+    //         <h1 className="text-2xl font-bold mb-3">
+    //             {product.data.username}
+    //         </h1>
+    //         <div>
+    //             {/* <img
+    //                 src={product.data.image}
+    //                 alt={product.data.description}
+    //             /> */}
+    //         </div>
+    //         <div className="font-bold text-xl mb-3">
+    //             $ {product.data.price}
+    //         </div>
+    //         <div>
+    //             {product.data.description}
+    //         </div>
+    //     </div>
+    // }
 
 
 
-    const [data,setData]=useState([]);
-  const getData=()=>{
-    fetch('http://127.0.0.1:8000/addpost/'
-    ,{
-      headers : { 
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
+
+
+
+
+
+
+
+
+
+    const button_add = () => {
+
+
+
+
+
+
+
+        if ((user===undefined) || (user===null) ){
+            console.log(user)
+            alert('please log in or register')
+            history.push('./login')
+    
+           
+       }else  {
+    
+    history.push('/Add_car')
+    
        }
+    
+    
     }
-    )
-      .then(function(response){
-        console.log(response)
-        return response.json();
-      })
-      .then(function(myJson) {
-        console.log(myJson);
-        setData(myJson)
-      });
-
-      useEffect(()=>{
-        getData()
-      },[])
-
-   
-   
-}
+ 
 
 
 
-const button_add = () => {
-    if ((user===undefined) || (user===null) ){
-        console.log(user)
-        alert('please log in or register')
-        history.push('./login')
 
-       
-   }else  {
-
-history.push('/Add_car')
-
-   }
-
-
-}
     return (
         <>
        
@@ -117,68 +148,29 @@ history.push('/Add_car')
          <p>Description</p>
            <button type = "submit"> View Post</button>
 </div>
-<div className="contain1">
-        <p>Items Name</p>
-        <div className= "images">
-             images
-        </div>
-         <p>Description</p>
-           <button type = "submit"> View Post</button>
-</div>
-
-<div className="contain1">
-        <p>Items Name</p>
-        <div className= "images">
-             images
-        </div>
-         <p>Description</p>
-           <button type = "submit"> View Post</button>
-</div>
-
-<div className="contain1">
-        <p>Items Name</p>
-        <div className= "images">
-             images
-        </div>
-         <p>Description</p>
-           <button type = "submit"> View Post</button>
-</div>
-<div className="contain1">
-        <p>Items Name</p>
-        <div className= "images">
-             images
-        </div>
-         <p>Description</p>
-           <button type = "submit"> View Post</button>
-</div>
-<div className="contain1">
-        <p>Items Name</p>
-        <div className= "images">
-             images
-        </div>
-         <p>Description</p>
-           <button type = "submit"> View Post</button>
 
 
 
 
-            </div>
+
+
+
+
+
+        
             </div>
 
         
 </div>
- <div className="App">
-     {
-       data && data.length>0 && data.map((item)=><p>{item.username}</p>)
-       
-     }
-     console.log(item.username)
-    </div>
+
 
 </div>
         <Footer/>
+
+        {/* {content} */}
         </>
     )
 }
+
 
 export default Car

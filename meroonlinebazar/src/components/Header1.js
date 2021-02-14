@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css'
-import addtocart from './addtocart.png'
-import logo5 from './logo5.PNG'
+
+import logo_header from '../Image/logo.png'
 import { getToken, getUser, removeUserSession } from './Common';
 import {useState, useEffect} from 'react'
 import {useHistory} from 'react-router-dom';
 
+import { FcSearch } from "react-icons/fc";
 
 function Header(props) {
     const history = useHistory()
@@ -22,7 +23,9 @@ function Header(props) {
     // handle click event of logout button
     const handleLogout = () => {
        
-      removeUserSession();
+    //   removeUserSession();
+    removeUserSession(); 
+     
     history.push('/')
 
       
@@ -30,6 +33,7 @@ function Header(props) {
 
     useEffect(() => {
         if(token!==null) {
+          
             history.push('/login_home')
         }
     }, [token])
@@ -58,13 +62,11 @@ function Header(props) {
 
 {/*        
    Welcome {token}! <br /><br />  */}
-   Welcome {user}!<br /><br /> 
+   {/* Welcome {user}!<br /><br />  */}
    
- 
+{/*  
                     <div className= "nav_div">
-                    <div className="logo">
-                    <img src={logo5}  className ="img_logo" alt="Logo" />
-                    </div>
+                    
                         <nav className ="navbar">
                             <div className = "menu-icon"></div>
                            <ul><li className = 'nav-item'>
@@ -93,23 +95,78 @@ function Header(props) {
                                    </Link>
                                </li> */}
                                
-                               <div className = "search_input">
+                               {/* <div className = "search_input">
                                <input type= "text" placeholder ="Search..."></input>
                                <button type = "submit">Search</button>
                                                              
                                  </div>
-                                 <div className = 'addcart'>
                                 
-                                     <Link to="/cart" >
-                                     <img src={addtocart} alt="addtocart icon"/>
-                                   </Link></div>
 
                                
                             </ul> 
                         </nav>
-                    </div>
-                    
+                    </div> */}
+                     {/* } */}
                             
+
+                     <div className= "nav_div">
+                    
+                 <nav className ="navbar">
+                 
+                 <h3>Welcome {user} !!</h3> 
+                    <ul>
+                    <li className = 'nav-item'>
+                    <Link to="/login_home" className= ''>
+                            <img src={logo_header}  className ="img_logo" alt="Logo" />
+                        
+                            </Link>
+                        </li>
+
+                   
+                        <li className = 'nav-item'>
+                            <Link to="/login_home" className= 'nav_header'>
+                            Home
+                        
+                            </Link>
+                        </li>
+
+                        <li className = 'nav-item'>
+                            <Link to="/dashboard" className= 'nav_header'>
+                            Dashboard
+                        
+                            </Link>
+                        </li>
+
+                     
+                         
+                         
+                        
+                       
+                        
+                        
+                        
+
+                        
+                        
+                        {/* <div className = "search_input">
+                        <input type= "text" placeholder ="Search..." className='search'></input>
+                        <button type = "submit" className='submit_button'><FcSearch /></button>
+                                                      
+                          </div>
+                          <br/> */}
+                        
+                        <Link to="/" className= 'link-logout'>
+                       
+                                   <button className='logout_button' onClick={handleLogout} value="Logout" >Logout</button>
+                                   </Link>
+                        
+                        
+
+                        
+                     </ul> 
+                 </nav>
+             </div>
+             
           </>
         
       );

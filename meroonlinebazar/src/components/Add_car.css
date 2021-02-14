@@ -1,3 +1,41 @@
-h1 {
-  text-align: center;
+ .add_post_input{
+
+ 
+  width: 300px;
+  height: 20px;
 }
+
+
+.add_post_label{
+margin: 0px;
+
+
+}
+
+.add_car_main{
+  width: 50%;
+}
+
+.username_input{
+
+
+  width: 90px;
+  height: 50px;
+  margin-bottom: 10px;
+ padding-left: 60px;
+ margin-left: 100px;
+ color: crimson;
+ font-size: 25px;
+}
+
+
+
+ .post_botton{
+   width: 150px;
+   margin-left: 300px;
+   height: 50px;
+   font-size: 25px;
+   border-radius: 20px;
+   background-color: aqua;
+   box-shadow: aquamarine;
+ }

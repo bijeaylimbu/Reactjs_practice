@@ -4,11 +4,38 @@
   }
 }
 
-.Car-main {
+/* .Car-main {
   border: 1px solid black;
   height: 755px;
   width: 100%;
   background-color: rgb(228, 226, 226);
+}
+
+.addpost_div{
+width: 100px;
+height: 50px;
+
+
+}
+
+.addcar_post{
+  background-color: rgb(48, 47, 40);
+  border: none;
+  color: rgb(197, 77, 77);
+  
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  
+  cursor: pointer;
+  width: 150px;
+  height: 70px;
+}
+img{
+
+  width: 100%;
+  height: 100%;
 }
 
 .contain1 {
@@ -51,7 +78,7 @@
   padding-bottom: 30px;
   margin-top: 30px;
 } */
-.category-part {
+/* .category-part {
   width: 100%;
 }
 .category-part {
@@ -59,15 +86,50 @@
   font-size: 50px;
   width: 97%;
   margin-bottom: 20px;
-}
-.category-part button {
+} */ */
+/* .category-part button {
   width: auto;
   height: 30px;
   float: right;
   font-size: large;
   margin-top: 20px;
   text-decoration: none;
-}
-.addcar_post {
+} */
+/* .addcar_post {
   text-decoration: none;
+} */
+.category-car-header h1{
+
+  font-size: 80px;
+  text-align: center;
+  /* float: right; */
+}
+div h1{
+
+  text-align: center;
+  font-size: 50px;
+}
+.category-car-header .addcar_post{
+  float: right;
+  height: 40px;
+  font-size: 20px;
+  margin-top: 0px;
+}
+.car-body{
+  margin-top: 80px;
+}
+.category-car-header{
+  background-color: aqua;
+}
+
+
+.add_post{
+float: right;
+height: 40px;
+width: 130px;
+font-size: 20px;
+background-color: blanchedalmond;
+border-radius: 20px;
+box-shadow: brown;
+
 }
