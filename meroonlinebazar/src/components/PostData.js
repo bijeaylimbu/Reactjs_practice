@@ -1,5 +1,5 @@
 export function PostData(type, userData) {
-    let BaseURL = 'http://localhost:8000/auth/';
+    let BaseURL = 'https://appwithdjangoandreact.herokuapp.com/auth/';
     //let BaseURL = 'http://localhost/PHP-Slim-Restful/api/';
     
 

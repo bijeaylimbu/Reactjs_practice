@@ -1,137 +1,159 @@
-import React, {useState, useEffect} from 'react'
-import './Login.css'
-import { Link ,Redirect} from 'react-router-dom';
-import APIService from '../APIService';
+import React, { useState,useEffect } from 'react';
+import axios from 'axios';
+import { getUser, setUserSession } from './Common';
 import {useCookies} from 'react-cookie';
 import {useHistory} from 'react-router-dom';
-import { useForm } from "react-hook-form";
-import { render } from 'react-dom';
-
-function homepage(props){
-history.push('/')
-
-}
-
-function loginpage(props){
-
-  window.location.reload();
-}
-
+import background from '../Image/unnamed.jpg'
+import { Link, Redirect } from 'react-router-dom';
+import '../css/Login.css';
 function Login(props) {
+  const [loading, setLoading] = useState(false);
+  const username = useFormInput('');
+  const password = useFormInput('');
+  const [error, setError] = useState(null);
+const user=getUser();
+  let history=useHistory();
+  function Register(){
+history.push('./register')
+
+  }
+
+
+  if (user) {
+    history.push('./login_home')
+  }
+  //   useEffect(() => {
+  //       if(token) {
+  //           history.push('/')
+  //       }
+  //   }, [token])
+
+  // handle button click of login form
+
+  const ForgetPassword=()=>{
+
+    window.location.assign('https://djangowithreactjs.herokuapp.com/api/reset_password/');
+  }
+  const handleLogin = () => {
+    setError(null);
+    setLoading(true);
+    axios.post('https://djangowithreactjs.herokuapp.com/auth/',
+ 
+     { username: username.value, password: password.value })
+    
+     .then(response => {
+      setLoading(false);
+    setUserSession(response.data.token,username.value);
+    // localStorage.setItem('user',response.data.user)
+     
+    // setUserSession(response.data.username,response.data.user);
 
     
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
-    const [token, setToken] = useCookies(['mytoken'])
-    const [isLogin, setLogin] = useState(true)
-    const [message, setMessage] = useState();
-    
-    const {  errors } = useForm();
 
-    let history = useHistory()
-    
-
+    // sessionStorage.setItem('UserName',response.data.username);
+      //  localStorage.setItem( 'user',username)
+      //  console.log(Use)
   
-
-   
-
-    const loginBtn = () => {
-        APIService.LoginUser({username, password})
-        .then(resp => setToken('mytoken',resp.token))
-        // .then(
-        //     resp => {
-              
-            
-        //       if (token['mytoken']!==undefined){
-        //         window.location.reload()
-        //        console.log(token['mytoken'])
-        //       //  history.push('/')
-        
-        //       }
-        //       else{
     
-        //        history.push('/')
-        //       }
-              
+    
+      // localStorage.setItem('session',JSON.stringify(token));
+     
+      props.history.push('/login_home');
 
+    }).catch(error => {
+      setLoading(false);
+       if (error.response.status === 401) setError(error.response.data.message);
+       else setError("username and password doesn't match");
       
-        //     // while(token['mytoken']===undefined){
-
-        //     //   window.location.reload();
-
-        //   // }
-
-         
-          
-
-              
-              
-            
-        //     })
-      
-       
-        // .catch(error => console.log(error))
-
-        
-       
-       
-        
-       // .catch(error => console.log(error))
-        // this.isAuthenticated(true);
-        // his.props.history.push("/");
-        
+       if(error.toJSON().message === 'Network Error'){
+        alert('no internet connection');
+        dispatch({type: RELOAD});
     }
 
-    // const RegisterBtn = () => {
-    //     APIService.RegisterUser({username, password})
-    //     .then(() =>  loginBtn())
-    //     .catch(error =>console.log(error))
+    });
 
-    // }
 
+
+    
+  }
+
+ 
+
+  return (
+    <div className='login_main'>
+
+  <div className='background_image' style={{ backgroundImage: `url(${background})`,
+   
   
 
-
-
-
-    return (
-        <>
-<div class="container-login"> 
-
-<h1>Please Login </h1>
+   backgroundSize: 'cover',
+   backgroundRepeat: 'no-repeat',
  
-    Email Address <br/> 
-    <input type = "text" placeholder="username" className = "username" id="username" value = {username} onChange = {e => setUsername(e.target.value)}/>
-    <br/>
-    Password <br/>
-     <input type = "password" placeholder="Enter password" className = "password" id="password" value = {password} onChange = {e => setPassword(e.target.value)}/>
-    <br/>
-    <button className ="login-button" onClick = {loginBtn} >Login</button>
+  
+ 
     
+    }}>   
+  
 
     
- 
-{/* 
-  <br/>
-  <a><Link to="/forget_password" >
-        Forget Password
-  </Link>      
-  </a>
-  <a><Link to="/register" >
-        Register
-  </Link>      
-  </a>
-  */}
+    <div class="login_page"> 
 
-{isLogin ? <h5>If You Don't Have Account, Please <button conClick = {() => setLogin(false)} > <Link to="/register" >Register</Link> </button>Here</h5>
-            
-            :  <h5>If You Have Account, Please <button className = "btn btn-primary" onClick = {() => setLogin(true)} >Login</button>Here</h5>
-           }
+<h1 >Login</h1>
+
+ <br/><br/>
+<label className='login_label'> Username or Email</label>
+    <br/>
+    <input type = "text" placeholder="username" className = "login_element" {...username} />
+    
+    <br/>
+    <br/>
+  <label className='login_label'> Password </label>
+
+     <br/>
+     <input type = "password" placeholder="Enter password" className = "login_element" {...password}/>
+    <br/>
+
+    {/* { error &&
+  <h5> { error } </h5> }<br/> */}
+  
+    {/* {error && <><small style={{ color: 'red' }}>{error}</small><br /></>}<br /> */}
+   
+    { error &&
+  <h6 className=""> { error } </h6> }<br/>
+    
+    <button  onClick={handleLogin}  className='login-submit'>Login</button>
+    <button  onClick={Register}  className='login-submit'>Register</button>
+    <br/>
+ {/* <a  href="https://djangowithreactjs.herokuapp.com/api/reset_password/"    >Forget Password</a> */}
+
+ <button  onClick={ForgetPassword}  className='forget_password'>Forget Password</button>
+<br/>
+    {/* <Link to = '/forget_password' >
+                    Forget Password
+                    </Link> */}
+<br/>
+
+    
+ </div>
+
 
   </div>
-</>
+  
 
-    )
+ </div>
+  );
+}
+
+const useFormInput = initialValue => {
+  const [value, setValue] = useState(initialValue);
+
+  const handleChange = e => {
+    setValue(e.target.value);
+  }
+  return {
+    value,
+    onChange: handleChange
+  }
 }
 
 export default Login;

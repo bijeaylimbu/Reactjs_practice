@@ -1,19 +1,17 @@
 import React,{useState,useEffect, Component} from 'react';
-import Header from './Header';
-import Footer from './Footer';
-import './Car.css'
-import { Link, useHistory,useParams } from 'react-router-dom';
-import {getUser} from './Common';
-import { useAxiosGet } from './HttpRequest';
-import { render } from 'react-dom';
-import ViewPost from './ViewPost';
-import ViewPost_bikes from './ViewPost_bikes';
 
-function Advertise()  {
+import '../css/Car.css'
+import { Link, useHistory,useParams } from 'react-router-dom';
+import {getUser} from '../components/Common';
+import { useAxiosGet } from '../components/HttpRequest';
+import { render } from 'react-dom';
+import ViewPost_phones from '../ViewPost/ViewPost_phones';
+
+function Mobile()  {
     const user=getUser();
     let history=useHistory();
     
-    const url = 'https://djangowithreactjs.herokuapp.com/advertise/'
+    const url = 'https://djangowithreactjs.herokuapp.com/addpost_phones/'
     let products = useAxiosGet(url)
 
     let content = null
@@ -30,9 +28,9 @@ function Advertise()  {
 
     if(products.data){
         content = 
-        products.data.sort((a,b) => new Date(a.created_at) < new Date(b.created_at) ? 1 : -1).slice(0, 3).map((product) => 
+        products.data.sort((a,b) => new Date(a.created_at) < new Date(b.created_at) ? 1 : -1).slice(0, 1).map((product) => 
             <div key={product.id} className="view_car">
-                <ViewPost_bikes
+                <ViewPost_phones
                     product={product}
                     
                 />
@@ -43,16 +41,15 @@ function Advertise()  {
 
     return (
         
-     <>
-          
-            
+        
+        
            
+           <>
                 { content } 
-               
-           
-        </>
+                </>
+         
     )
 }
 
 
-export default Advertise;
+export default Mobile;

@@ -1,26 +1,21 @@
 import React, { Component } from 'react';
-import Header from './Header1';
-import Footer from './Footer';
+import Header from '../Widget/Header1';
+import Footer from '../Widget/Footer';
 import { Link } from 'react-router-dom';
-import './Home.css'
-import axios from 'axios'; 
+import '../css/Home.css'
+
 import { useAxiosGet1 ,useAxiosGet_bikes1,useAxiosGet_land1,useAxiosGet_fashion1,useAxiosGet_computer1,useAxiosGet_mobile1} from './HttpRequest_login';
 import {  useHistory } from 'react-router-dom';
-import ViewPost from './ViewPost';
-import ViewPost_land from './ViewPost_land';
-import ViewPost_bikes from './ViewPost_bikes';
-import ViewPost_computer from './ViewPost_computer';
-import ViewPost_phones from './ViewPost_phones';
-import ViewPost_fashion from './ViewPost_fashion';
+import ViewPost from '../ViewPost/ViewPost';
+
 import { getToken, getUser, removeUserSession } from './Common';
 
-import Login from './Login';
-import Land from "./Land_login";
-import Bikes from './Bikes_login';
-import Fashion from './Fashion_login';
-import Computer from './Computer_login';
-import Mobile from './Mobile_login';
-import Home from './Home';
+import Bikes from '../ViewProduct/Bikes_login';
+import Land from '../ViewProduct/Land_login';
+import Fashion from '../ViewProduct/Fashion_login';
+import Computer from '../ViewProduct/Computer_login';
+import Mobile from '../ViewProduct/Mobile_login';
+
 function Home1(props)  {
     const token = getToken();
     const user=getUser();
@@ -28,14 +23,16 @@ function Home1(props)  {
 
     let history=useHistory();
 
-    const url = 'http://127.0.0.1:8000/addpost/'
-    const url_land = 'http://127.0.0.1:8000/addpost_land/'
-    const url_bikes = 'http://127.0.0.1:8000/addpost_bikes/'
+    const url = 'https://djangowithreactjs.herokuapp.com/addpost/'
+    const url_land = 'https://djangowithreactjs.herokuapp.com/addpost_land/'
+    const url_bikes = 'https://djangowithreactjs.herokuapp.com/addpost_bikes/'
 
-    const url_computer = 'http://127.0.0.1:8000/addpost_computer/'
-    const url_phones = 'http://127.0.0.1:8000/addpost_phones/'
+    const url_computer = 'https://djangowithreactjs.herokuapp.com/addpost_computer/'
+    const url_phones = 'https://djangowithreactjs.herokuapp.com/addpost_phones/'
 
-    const url_fashion = 'http://127.0.0.1:8000/addpost_fashion/'
+    const url_fashion = 'https://djangowithreactjs.herokuapp.com/addpost_fashion/'
+
+    const urlAdv="https://djangowithreactjs.herokuapp.com/advertise/"
     let products = useAxiosGet1(url)
     let products_land = useAxiosGet_land1(url_land)
     let products_bikes = useAxiosGet_bikes1(url_bikes)
@@ -64,29 +61,9 @@ function Home1(props)  {
 
 
 
-    //     if ((user===undefined) || (user===null) ){
-    //         console.log(user)
-    //         alert('please log in or register')
-    //         history.push('./login')
-    
-           
-    //    }else  {
-    
-    // history.push('/Add_car')
-    
-    //    }
-    
-    
-    // }
+   
 
-    // if(products.error){
-    //     content = <div>
-           
-    //         <div className="bg-red-300 p-3">
-            
-    //         </div>
-    //     </div>
-    // }
+  
 
    
 
@@ -101,56 +78,11 @@ function Home1(props)  {
            
             </div>
         )
-        // content_land=
-        // products_land.data.sort((a,b) => new Date(a.created_at) < new Date(b.created_at) ? 1 : -1).slice(0, 3).map((product) => 
-        //          <div key={product.id} className="view_car">
-        //             <ViewPost_land
-        //                 product={product}
-                        
-        //             />
-               
-        //      </div>
-        //     )
-    //         content_bikes=
-    //         products_bikes.data.sort((a,b) => new Date(a.created_at) < new Date(b.created_at) ? 1 : -1).slice(0, 3).map((product) => 
-    //         <div key={product.id} className="view_car">
-    //            <ViewPost_bikes
-    //                product={product}
-                   
-    //            />
+  
           
-    //     </div>
-    //    ),
-    //    content_computer=
-    //         products_computer.data.sort((a,b) => new Date(a.created_at) < new Date(b.created_at) ? 1 : -1).slice(0, 3).map((product) => 
-    //         <div key={product.id} className="view_car">
-    //            <ViewPost_computer
-    //                product={product}
-                   
-    //            />
-          
-    //     </div>
-    //    )
-//        content_phones=
-//        products_phones.data.sort((a,b) => new Date(a.created_at) < new Date(b.created_at) ? 1 : -1).slice(0, 3).map((product) => 
-//        <div key={product.id} className="view_car">
-//           <ViewPost_phones
-//               product={product}
-              
-//           />
-     
-//    </div>
-//   ),
-//   content_fashion=
-//        products_fashion.data.sort((a,b) => new Date(a.created_at) < new Date(b.created_at) ? 1 : -1).slice(0, 3).map((product) => 
-//        <div key={product.id} className="view_car">
-//           <ViewPost_fashion
-//               product={product}
-              
-//           />
-     
-//    </div>
-//   )
+
+
+
     }
 
    
@@ -158,22 +90,13 @@ function Home1(props)  {
 
  
     
-    // if(content===null){
-    //   content=content = 
-    //   products.data.sort((a,b) => new Date(a.created_at) < new Date(b.created_at) ? 1 : -1).slice(0, 3).map((product) => 
-    //       <div key={product.id} className="view_car">
-    //           <ViewPost
-    //               product={product}
-                  
-    //           />
-         
-    //       </div>
-    //   )
+  
+   
            
           
             
             
-    // }
+   
 
  
    
@@ -190,18 +113,13 @@ function Home1(props)  {
 
  
 
-    // useEffect(() => {
-    //     if(token!==null) {
-          
-    //         history.push('/login_home')
-    //     }
-    // }, [token])
-   
 
    
     if (!user) {
             history.push('./login')
           }
+
+
       
 
        

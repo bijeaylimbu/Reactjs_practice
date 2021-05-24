@@ -1,11 +1,10 @@
 import React, { Component,useEffect,useState } from 'react';
 import './Register.css';
-import { Link, Redirect } from 'react-router-dom';
+
 import axios from 'axios';
-import { setUserSession } from './Common';
-import {useCookies} from 'react-cookie';
+
 import {useHistory} from 'react-router-dom';
-import validate from './RegisterFormValidationRule';
+
 
 import background from '../Image/bach.jpg'
 
@@ -51,11 +50,9 @@ function Register(props) {
    
     setLoading(true);
     axios.all([ 
-    axios.post('http://127.0.0.1:8000/api/register/',
+    axios.post('https://djangowithreactjs.herokuapp.com/api/register/',
     { username: username.value, password: password.value,email:email.value,password2:password2.value ,first_name:first_name.value,last_name:last_name.value}),
     
-    axios.post('http://127.0.0.1:8000/api/profile/',
-    {phone:phone.value,username: username.value, password: password.value,email:email.value,password2:password2.value ,first_name:first_name.value,last_name:last_name.value}),
     
   
   
@@ -133,30 +130,27 @@ First Name:
     
     <br/>
     {error_last_name && <><small style={{ color: 'red' }}>{error_last_name}</small><br /></>}
- username
+ Username:
  <br/> 
     <input type = "text" placeholder="username" className = "reg" {...username} />
     <br/>
     {error_username && <><small style={{ color: 'red' }}>{error_username}</small><br /></>}
 
-    email <br/> 
+    Email: <br/> 
     <input type = "text" placeholder="email" className = "reg" {...email} />
     <br/>
     {error_email && <><small style={{ color: 'red' }}>{error_email}</small><br /></>}
-    Phone <br/> 
-    <input type = "text" placeholder="Phone" className = "reg" {...phone} />
-    <br/>
-    
+  
     
     
    
     
-    Password <br/>
+    Password: <br/>
      <input type ="password" placeholder="Enter password" className = "reg"  {...password}/>
  <br/>
- {error_password && <><small style={{ color: 'red' }}>{error_password2}</small><br /></>}<br />
+ {error_password && <><small style={{ color: 'red' }}>{error_password2}</small><br /></>}
  
-    Re-Password <br/>
+    Re-Password: <br/>
      <input type ="password" placeholder="Enter password" className = "reg" {...password2}/>
    <br/>
     {/* { ( // Conditionally render our errors
@@ -168,7 +162,7 @@ First Name:
     {/* {error.map(error => <div>{error.data}</div>)} */}
     
     <button  onClick={handleRegister} className='reg_button' >Register</button>
-    
+ 
     </div>
     
     </div>

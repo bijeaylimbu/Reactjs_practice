@@ -1,0 +1,26 @@
+.add_main {
+  text-align: center;
+  /* margin-top: 20px; */
+  border: 2px solid;
+  /* border-right: 5px; */
+}
+.add_main h1 {
+  font-size: 40px;
+}
+.add_main .add_post_label {
+  font-size: 20px;
+  margin-top: 20px;
+}
+
+.add_main .add_post_input {
+  height: 20px;
+  padding-top: 10px;
+  width: 250px;
+}
+.add_main button {
+  width: 70px;
+  height: 40px;
+  font-size: 20px;
+  background-color: chartreuse;
+  margin-bottom: 20px;
+}

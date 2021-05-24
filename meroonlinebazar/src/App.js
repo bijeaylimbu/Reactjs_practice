@@ -1,59 +1,54 @@
 
 import React, { useState, useEffect } from "react";
 import './App.css';
-import header from './components/Header'
+
 import "./components/Home";
-import "./components/AddPost";
+import "./Add/AddPost";
 import Home from './components/Home';
 import Home1 from './components/Home1';
-import ViewPost from './components/ViewPost';
-import ViewPost_computer from './components/ViewPost_computer';
-import ViewPost_fashion from './components/ViewPost_fashion';
-import ViewPost_phones from './components/ViewPost_phones';
-import "./components/Login";
-import Login from './components/Login3';
-import Car from './components/Car2';
-import Product from './components/Product1';
-import Product_computer from './components/Product_computer';
-import Product_fashion from './components/Product_fashion';
-import Product_land from './components/Product_land';
-import Product_phones from './components/Product_phones';
-import Product_bikes from './components/Product_bikes';
-import Bikes from './components/Bikes';
-import Mobile from './components/Mobile';
-import Computer from './components/Computer';
-import Fashion from './components/Fashion';
-import "./components/Register";
+import ViewPost from './ViewPost/ViewPost';
+import ViewPost_computer from './ViewPost/ViewPost_computer';
+
+
+import Login from './components/Login';
+import Car from './FrontDetail/Car';
+import Product from './ProductDetail/Product1';
+import Product_computer from './ProductDetail/Product_computer';
+import Product_fashion from './ProductDetail/Product_fashion';
+import Product_land from './ProductDetail/Product_land';
+import Product_phones from './ProductDetail/Product_phones';
+import Product_bikes from './ProductDetail/Product_bikes';
+import Bikes from './FrontDetail/Bikes';
+import Mobile from './FrontDetail/Mobile';
+import Computer from './FrontDetail/Computer';
+import Fashion from './FrontDetail/Fashion';
+
 import Register from './components/Register1';
 import Cart from './components/Cart';
 // import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import { BrowserRouter, Switch,Route } from 'react-router-dom';
-import AddPost from "./components/AddPost";
-import "./components/Header"
-import Land from "./components/Land";
-import ForgetPassword from "./components/ForgetPassword";
-import "./components/ForgetPassword";
-import VerificationCode from "./components/VerificationCode";
-import "./components/VerificationCode";
-import Add_car from "./components/Add_car2";
-import Add_bikes from "./components/Add_bikes";
-import Add_computer from "./components/Add_computer";
-import Add_fashion from "./components/Add_fashion";
-import Add_mobile from "./components/Add_mobile";
-import Add_landhouse from "./components/Add_landhouse";
+import AddPost from "./Add/AddPost";
 
-import Dashboard from "./components/Dashboard";
-import Dashboard_fashion from "./components/Dashboard_fashion";
-import Dashboard_bikes from "./components/Dashboard_bikes";
-import Dashboard_car from "./components/Dashboard_car";
-import Dashboard_computer from "./components/Dashboard_computer";
-import Dashboard_land from "./components/Dashboard_land";
-import Dashboard_phones from "./components/Dashboard_phones";
-import PrivateRoute from './components/PrivateRoute';
-import PublicRoute from './components/PublicRoute';
-import axios from 'axios';
-import { getToken, removeUserSession, setUserSession } from './components/Common';
-import Header from "./components/Header";
+import Land from "./FrontDetail/Land";
+
+
+import Add_car from "./Add/Add_car2";
+import Add_bikes from "./Add/Add_bikes";
+import Add_computer from "./Add/Add_computer";
+import Add_fashion from "./Add/Add_fashion";
+import Add_mobile from "./Add/Add_mobile";
+import Add_landhouse from "./Add/Add_landhouse";
+
+import Dashboard from "./Dashboard/Dashboard";
+import Dashboard_fashion from "./Dashboard/Dashboard_fashion";
+import Dashboard_bikes from "./Dashboard/Dashboard_bikes";
+import Dashboard_car from "./Dashboard/Dashboard_car";
+import Dashboard_computer from "./Dashboard/Dashboard_computer";
+import Dashboard_land from "./Dashboard/Dashboard_land";
+import Dashboard_phones from "./Dashboard/Dashboard_phones";
+
+
+
 
 function  App(){
   // const [authLoading, setAuthLoading] = useState(true);
@@ -110,8 +105,7 @@ function  App(){
         <Route path='/laptopComputers' component={Computer}/>
         <Route path='/fashion' component={Fashion}/>
         <Route path='/house$land' component={Land}/>
-        <Route path='/forget_password' component={ForgetPassword}/>
-        <Route path='/VerificationCode' component={VerificationCode}/>
+
         <Route path='/Add_car' component={Add_car} />
         <Route path='/Add_bikes' component={Add_bikes} />
         <Route path='/Add_computer' component={Add_computer} />
@@ -135,11 +129,8 @@ function  App(){
         <Route path='/products_phones/:id' component={Product_phones} />
 
         <Route path='/products_bikes/:id' component={Product_bikes} />
-        <PublicRoute restricted={false} component={Home} path="/" exact />
-          <PublicRoute restricted={true} component={Login} path="/login" exact />
-          <PublicRoute restricted={true} component={Home1} path="/login_home" exact />
-          <PrivateRoute component={Dashboard} path="/dashboard" exact />
-          <PrivateRoute component={Home1} path="/login_home" exact />
+       
+          
 
       </Switch>
 

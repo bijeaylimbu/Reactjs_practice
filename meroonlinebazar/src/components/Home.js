@@ -1,27 +1,21 @@
 import React, { Component,useState,useEffect } from 'react';
-import Header from './Header';
-import Footer from './Footer';
+import Header from '../Widget/Header';
+import Footer from '../Widget/Footer';
 import { Link,useHistory } from 'react-router-dom';
 
-import './Home.css'
+import '../css/Home.css'
 import 'react-slideshow-image/dist/styles.css'
-import axios from 'axios'; 
+
 import { useAxiosGet ,useAxiosGet_bikes,useAxiosGet_land,useAxiosGet_fashion,useAxiosGet_computer,useAxiosGet_mobile} from './HttpRequest';
-import ViewPost from './ViewPost';
-import ViewPost_land from './ViewPost_land';
-import ViewPost_bikes from './ViewPost_bikes';
-import ViewPost_computer from './ViewPost_computer';
-import ViewPost_phones from './ViewPost_phones';
-import ViewPost_fashion from './ViewPost_fashion';
-import { useParams } from "react-router-dom";
-import Bikes from './Bikes_login';
-import Land from './Land_login';
-import Fashion from './Fashion_login';
-import Computer from './Computer_login';
-import Mobile from './Mobile_login';
+import ViewPost from '../ViewPost/ViewPost';
+
+import Bikes from '../ViewProduct/Bikes_login';
+import Land from '../ViewProduct/Land_login';
+import Fashion from '../ViewProduct/Fashion_login';
+import Computer from '../ViewProduct/Computer_login';
+import Mobile from '../ViewProduct/Mobile_login';
 import { getToken, getUser, removeUserSession } from './Common';
-import {useAxiosGetAdd} from './HttpRequest_advertise';
-import Advertise from './Addvertise';
+
 function Home () {
     const token = getToken();
     const user=getUser();
@@ -31,18 +25,18 @@ function Home () {
 
   
     
-    const url = 'http://127.0.0.1:8000/addpost/'
-    const url_land = 'http://127.0.0.1:8000/addpost_land/'
-    const url_bikes = 'http://127.0.0.1:8000/addpost_bikes/'
+    const url = 'https://djangowithreactjs.herokuapp.com/addpost/'
+    const url_land = 'https://djangowithreactjs.herokuapp.com/addpost_land/'
+    const url_bikes = 'https://djangowithreactjs.herokuapp.com/addpost_bikes/'
 
-    const url_computer = 'http://127.0.0.1:8000/addpost_computer/'
-    const url_phones = 'http://127.0.0.1:8000/addpost_phones/'
+    const url_computer = 'https://djangowithreactjs.herokuapp.com/addpost_computer/'
+    const url_phones = 'https://djangowithreactjs.herokuapp.com/addpost_phones/'
 
-    const url_fashion = 'http://127.0.0.1:8000/addpost_fashion/'
+    const url_fashion = 'https://djangowithreactjs.herokuapp.com/addpost_fashion/'
 
-    const urlAdv="http://127.0.0.1:8000/advertise/"
+    const urlAdv="https://djangowithreactjs.herokuapp.com/advertise/"
     let products = useAxiosGet(url)
-    let advertise = useAxiosGetAdd(url)
+   
 
     let products_land = useAxiosGet_land(url_land)
     let products_bikes = useAxiosGet_bikes(url_bikes)
@@ -67,21 +61,7 @@ function Home () {
 
 
 
-    // if (content==null ){
-        //clearInterval(content);
-
-    //     const [state, setState] = useState([])
-    //  useEffect(() => {
-    //         fetch("http://127.0.0.1:8000/addpost/").then(
-    //             res => setState(res.data)
-    //         )
-    //     })
-           
-       
-    //     console.log(content)
-       
-    //   }
-
+   
      
 
 
@@ -90,21 +70,7 @@ function Home () {
 
 
 
-    //     if ((user===undefined) || (user===null) ){
-    //         console.log(user)
-    //         alert('please log in or register')
-    //         history.push('./login')
-    
-           
-    //    }else  {
-    
-    // history.push('/Add_car')
-    
-    //    }
-    
-    
-    // }
-
+   
     if(products.error){
         content = <div>
            
@@ -129,85 +95,17 @@ function Home () {
             </div>
         )
 
-        // ,
-        // content_land=
-        // products_land.data.sort((a,b) => new Date(a.created_at) < new Date(b.created_at) ? 1 : -1).slice(0, 3).map((product) => 
-        //          <div key={product.id} className="view_car">
-        //             <ViewPost_land
-        //                 product={product}
-                        
-        //             />
-               
-        //      </div>
-        //     )
-//             content_bikes=
-//             products_bikes.data.sort((a,b) => new Date(a.created_at) < new Date(b.created_at) ? 1 : -1).slice(0, 3).map((product) => 
-//             <div key={product.id} className="view_car">
-//                <ViewPost_bikes
-//                    product={product}
+       
+
                    
-//                />
-          
-//         </div>
-//        ),
-//        content_computer=
-//             products_computer.data.sort((a,b) => new Date(a.created_at) < new Date(b.created_at) ? 1 : -1).slice(0, 3).map((product) => 
-//             <div key={product.id} className="view_car">
-//                <ViewPost_computer
-//                    product={product}
-                   
-//                />
-          
-//         </div>
-//        ),
-//        content_phones=
-//        products_phones.data.sort((a,b) => new Date(a.created_at) < new Date(b.created_at) ? 1 : -1).slice(0, 3).map((product) => 
-//        <div key={product.id} className="view_car">
-//           <ViewPost_phones
-//               product={product}
-              
-//           />
-     
-//    </div>
-//   ),
-//   content_fashion=
-//        products_fashion.data.sort((a,b) => new Date(a.created_at) < new Date(b.created_at) ? 1 : -1).slice(0, 3).map((product) => 
-//        <div key={product.id} className="view_car">
-//           <ViewPost_fashion
-//               product={product}
-              
-//           />
-     
-//    </div>
-//   )
+
+
     }
 
-    // if(products.data){
-    //     content_fashion=
-    //            products_fashion.data.sort((a,b) => new Date(a.created_at) < new Date(b.created_at) ? 1 : -1).slice(0, 3).map((product) => 
-    //            <div key={product.id} className="view_car">
-    //               <ViewPost_fashion
-    //                   product={product}
-                      
-    //               />
-             
-    //        </div>
-    //       )
-    // }
+   
 
    
-    // if(products.data){
-    //     content = 
-    //     products_land.data.slice(0, 3).map((product) => 
-    //         <div key={product.id} className="view_car">
-    //             <ViewPost_land
-    //                 product={product}
-                    
-    //             />
-           
-    //         </div>
-    //     )
-    // }
+ 
 
 
  

@@ -1,0 +1,112 @@
+ .add_post_input{
+
+ 
+  width: 300px;
+  height: 20px;
+}
+
+.main_add{
+  width: 300px;
+  margin-left: 500px;
+}
+.add_post_label{
+margin: 0px;
+
+
+}
+
+.add_car_main{
+  width: 50%;
+}
+
+.username_input{
+
+
+  width: 200px;
+  height: 50px;
+  margin-bottom: 10px;
+
+ margin-left: 100px;
+ padding-left: 10px;
+ color: crimson;
+ font-size: 25px;
+}
+
+
+
+ .post_botton{
+   width: 150px;
+   text-align: center;
+   height: 50px;
+   font-size: 25px;
+   border-radius: 20px;
+   background-color: aqua;
+   box-shadow: aquamarine;
+ }
+
+
+ @media only screen and (max-width: 500px) {
+
+  
+.main_add{
+  width: 100px;
+  margin-left: 0px;
+}
+
+
+.username_input{
+
+  width: 100px;
+  height: 40px;
+  margin-bottom: 10px;
+ padding-left: 60px;
+ margin-left: 0px;
+ color: crimson;
+ font-size: 20px;
+}
+
+.add_post_input{
+
+ 
+  width: 250px;
+  height: 20px;
+}
+
+.add_car_main{
+ margin-left: 0px;
+}
+ }
+
+
+
+ @media only screen and (max-width: 500px) {
+
+  
+  .main_add{
+    width: 100px;
+    margin-left: 0px;
+  }
+  
+  
+  .username_input{
+  
+    width: 100px;
+    height: 40px;
+    margin-bottom: 10px;
+   padding-left: 60px;
+   margin-left: 0px;
+   color: crimson;
+   font-size: 20px;
+  }
+  
+  .add_post_input{
+  
+   
+    width: 250px;
+    height: 20px;
+  }
+  
+  .add_car_main{
+   margin-left: 0px;
+  }
+   }
